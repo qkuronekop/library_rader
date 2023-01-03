@@ -47,7 +47,7 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="w-full fixed bottom-0 inset-x-0">
+  <div class="w-full fixed bottom-0 inset-x-0 z-10">
     <div class="w-full justify-evenly flex bg-light-gray pt-3 pb-6">
       <div><button @click="select(0)" class="rounded-full border-hidden hover:border-hidden active:border-hidden forcus:border-hidden"><icon-base icon-name="home" width="32" height="32" v-bind:iconColor="colors[0]"><home-icon /></icon-base></button></div>
       <div><button @click="select(1)" class="rounded-full border-hidden hover:border-hidden active:border-hidden forcus:border-hidden"><icon-base icon-name="map-pin" width="32" height="32" v-bind:iconColor="colors[1]"><map-pin-icon /></icon-base></button></div>

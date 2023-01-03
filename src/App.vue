@@ -7,7 +7,9 @@ import BottomNavigationBar from './components/BottomNavigationBar.vue';
     <template #default>
       <div>
         <CommonHeader/>
-        <router-view />
+        <div class="fixed inset-x-0 inset-y-14 z-0">
+          <router-view />
+        </div>
         <BottomNavigationBar/>
       </div>
     </template>
@@ -18,17 +20,3 @@ import BottomNavigationBar from './components/BottomNavigationBar.vue';
     </template>
   </Suspense>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
