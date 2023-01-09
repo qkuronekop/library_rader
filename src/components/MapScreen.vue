@@ -1,7 +1,8 @@
   <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, inject } from 'vue';
   import searchService from '../service/SearchService';
-  import markerIcon from '../assets/icon/pin.png'
+  import markerIcon from '../assets/icon/pin.png';
+  import selectIcon from '../assets/icon/select_pin.png';
 
 
   export default defineComponent({
@@ -17,6 +18,17 @@
       const strokeWidth = ref(4)
       const strokeColor = ref('red')
       const fillColor = ref('white')
+      const featureSelected = (event) => {
+
+        console.log(event.select)
+
+      }
+      const selectConditions = inject('ol-selectconditions')
+      const selectCondition = selectConditions.pointerMove;
+      const selectInteactionFilter = (feature) => {
+        console.log(feature.values_.name);
+            return feature.values_.name != undefined;
+        };
       return {
         center,
         projection,
@@ -29,6 +41,10 @@
         strokeColor,
         fillColor,
         markerIcon,
+        selectIcon,
+        selectCondition,
+        featureSelected,
+        selectInteactionFilter,
       }
     },
     mounted() {
@@ -42,7 +58,7 @@
                 const str = e.geocode.split(",");
                 return [Number(str[0]), Number(str[1])]
               });
-              // console.log(value);
+              console.log(value);
             });
             this.isLoading = false;
           },
@@ -56,7 +72,11 @@
   });
   </script>
   <template>
-    <div class="w-full h-full">
+    <div class="w-full h-full z-0">
+
+      <!-- <div class="z-10 inset-0 absolute">
+        aaaaaa
+      </div> -->
 
       <ol-map :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" style="height:100%">
 
@@ -75,10 +95,16 @@
           </template>
         </ol-overlay>
 
+        <ol-interaction-select @select="featureSelected" :condition="selectCondition" :filter="selectInteactionFilter">
+          <ol-style>
+              <ol-style-icon :src="selectIcon" :scale="0.05"></ol-style-icon>
+          </ol-style>
+        </ol-interaction-select>
+
         <ol-vector-layer>
           <ol-source-vector>
               <ol-feature>
-                  <ol-geom-point :coordinates="coordinate"></ol-geom-point>
+                  <ol-geom-multi-point :coordinates="coordinate"></ol-geom-multi-point>
                   <ol-style>
                     <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
                   </ol-style>
