@@ -10,6 +10,7 @@ export interface Library {
   tel: string,
   pref: string,
   city: string,
+  distance: number,
   address: string,
   geocode: string,
   isil: string,
