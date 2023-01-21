@@ -2,23 +2,11 @@
 import { defineComponent, ref, inject, reactive } from "vue";
 import searchService from "../service/SearchService";
 import markerIcon from "../assets/icon/pin.png";
-import selectIcon from "../assets/icon/select_pin.png";
 import { Library } from "../models/Library";
 
 export default defineComponent({
   name: "MapScreen",
   setup(props) {
-    type User = {
-      firstName?: string;
-      lastName?: string;
-      phoneNumber?: string;
-    };
-
-    const firstName = ref("");
-    const lastName = ref("");
-    const phoneNumber = ref("");
-
-    const user = reactive<User>({});
     const libraries = ref(Array<Library>());
     const showMap = ref(true);
     const isLoading = ref(true);
@@ -27,16 +15,7 @@ export default defineComponent({
     const zoom = ref(14.5);
     const rotation = ref(0);
     const coordinate = ref([0]);
-    const featureSelected = (event) => {
-      console.log(event.select);
-    };
-    const selectConditions = inject("ol-selectconditions");
-    const selectCondition = selectConditions.pointerMove;
-    const selectInteactionFilter = (feature) => {
-      console.log(feature.values_.name);
-      return feature.values_.name != undefined;
-    };
-    let data = localStorage.getItem("favorite_libralies") ?? "[]";
+    const data = localStorage.getItem("favorite_libralies") ?? "[]";
     const favorites = ref(JSON.parse(data) as Array<Library>);
     return {
       showMap,
@@ -49,10 +28,6 @@ export default defineComponent({
       isLoading,
       coordinate,
       markerIcon,
-      selectIcon,
-      selectCondition,
-      featureSelected,
-      selectInteactionFilter,
     };
   },
   mounted() {
@@ -71,7 +46,6 @@ export default defineComponent({
               const str = e.geocode.split(",");
               return [Number(str[0]), Number(str[1])];
             });
-            console.log(value);
           });
           this.isLoading = false;
         },
@@ -92,6 +66,9 @@ export default defineComponent({
         "favorite_libralies",
         JSON.stringify(this.favorites)
       );
+    },
+    onClickPoint() {
+      console.log("onClickPoint");
     },
   },
 });
@@ -138,7 +115,7 @@ export default defineComponent({
               :coordinates="coordinate"
             ></ol-geom-multi-point>
             <ol-style>
-              <ol-style-icon :src="markerIcon" :scale="0.1"></ol-style-icon>
+              <ol-style-icon :src="markerIcon" :scale="0.1"> </ol-style-icon>
             </ol-style>
           </ol-feature>
         </ol-source-vector>
