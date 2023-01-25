@@ -34,8 +34,18 @@ export default defineComponent({
     </div>
     <div class="mt-6">
       <h2 class="text-xl font-bold text-h2">この本、どこにあるの？</h2>
-      <div class="w-full">
-        <input type="text" v-model="input" placeholder="ISBN" />
+      <div class="m-6 grid grid-cols-6 border rounded px-4 py-2">
+        <div class="w-fit">
+          <img class="w-10 h-10" src="../assets/icon/search.png" />
+        </div>
+        <div class="col-span-5">
+          <input
+            class="w-full h-12 placeholder:text-xl placeholder:pl-2"
+            type="text"
+            v-model="input"
+            placeholder="ISBN"
+          />
+        </div>
       </div>
     </div>
   </div>
