@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/library_rader/sw.js', { scope: '/library_rader/' })})}
