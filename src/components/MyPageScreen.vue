@@ -10,7 +10,7 @@ export default defineComponent({
     };
   },
   methods: {
-    onClickAddHome() {},
+    // onClickAddHome() {},
     onClickNo() {
       this.modalOpen = false;
     },
@@ -30,13 +30,13 @@ export default defineComponent({
       </div>
       <hr class="mr-6" />
     </div>
-    <div>
+    <!-- <div>
       <div class="m-6 flex" @click="onClickAddHome">
         <img class="w-6 h-6 mr-4" src="../assets/icon/ic_home.png" />
         <p class="text-left">ホーム画面に追加</p>
       </div>
       <hr class="mr-6" />
-    </div>
+    </div> -->
   </div>
   <teleport to="#my_page">
     <div

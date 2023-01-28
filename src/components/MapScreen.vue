@@ -3,6 +3,7 @@ import { defineComponent, ref, inject, reactive } from "vue";
 import searchService from "../service/SearchService";
 import markerIcon from "../assets/icon/pin.png";
 import { Library } from "../models/Library";
+import { calilUrl } from "../models/Library";
 
 export default defineComponent({
   name: "MapScreen",
@@ -28,6 +29,7 @@ export default defineComponent({
       isLoading,
       coordinate,
       markerIcon,
+      calilUrl,
     };
   },
   mounted() {
@@ -139,7 +141,13 @@ export default defineComponent({
           <p class="w-fit font-bold text-xs mb-2 bg-slate-200">
             {{ library.city }}
           </p>
-          <p class="w-fit font-medium">{{ library.short }}</p>
+          <p class="w-fit font-medium">
+            <a
+              :href="calilUrl(library.libid, library.formal)"
+              target="_blank"
+              >{{ library.short }}</a
+            >
+          </p>
           <p class="w-fit text-left text-sm">{{ library.address }}</p>
           <p class="text-right">{{ library.distance.toFixed(2) }}km</p>
         </div>

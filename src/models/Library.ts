@@ -17,3 +17,7 @@ export interface Library {
   faid: string,
   url_pc: string,
 }
+
+export function calilUrl(libid: string, formal: string) {
+  return "https://calil.jp/library/" + libid + "/" + formal;
+}
