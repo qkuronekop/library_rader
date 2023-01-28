@@ -36,10 +36,9 @@ export default defineComponent({
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          // this.center = [position.coords.longitude, position.coords.latitude];
-          // const res = searchService.getLiblaries(`${this.center[0]}` + "," + `${this.center[1]}`);
+          this.center = [position.coords.longitude, position.coords.latitude];
           const res = searchService.getLiblaries(
-            `139.7673068` + "," + `35.680959`
+            `${this.center[0]}` + "," + `${this.center[1]}`
           );
           res.then((value) => {
             this.libraries = value;

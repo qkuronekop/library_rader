@@ -21,17 +21,27 @@ export default defineConfig({
           src: 'icon.png',
           size: '72x72',
           type: 'image/png',
+        },
+        {
+          src: 'icon192.png',
+          size: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'icon512.png',
+          size: '512x512',
+          type: 'image/png',
         }
       ]
     } }),
   ],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://api.calil.jp',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      }
-    }
-  }
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'https://api.calil.jp',
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, ''),
+  //     }
+  //   }
+  // }
 })
