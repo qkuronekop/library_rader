@@ -25,13 +25,13 @@ export default defineConfig({
       ]
     } }),
   ],
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'https://api.calil.jp',
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, ''),
-  //     }
-  //   }
-  // }
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api.calil.jp',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    }
+  }
 })
